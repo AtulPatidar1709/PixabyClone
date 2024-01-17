@@ -1,0 +1,19 @@
+/* .main {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.back {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+const response = await fetch("https://pixabay.com/api/?key=38935622-5004e0429edb1531c070d2b8d&q=mountains"); */
+
+body {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
