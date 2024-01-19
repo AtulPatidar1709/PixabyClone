@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import './Home.css';
+import Search from '../Search/Search';
+import Header from '../Header/Header';
+// import Search from '../Search/Search';
 
 const Home = () => {
   const [randomImage, setRandomImage] = useState('');
@@ -22,7 +25,10 @@ const Home = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array to run the effect only once when the component mounts.
+  }, []);
+  // Empty dependency array to run the effect only once when the component mounts.
+
+
 
   const backgroundStyle = {
     backgroundImage: `url('${randomImage.largeImageURL}')`,
@@ -35,7 +41,11 @@ const Home = () => {
 
   return (
     <div style={backgroundStyle} className='main'>
-      
+      <Header />
+      <div className='Heading'>
+        <h1>Discover over 2,000,000 <br className='break' /> free Stock Images</h1>
+      </div>
+      <Search />
     </div>
   );
 };

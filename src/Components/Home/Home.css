@@ -1,19 +1,37 @@
-/* .main {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.back {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
-const response = await fetch("https://pixabay.com/api/?key=38935622-5004e0429edb1531c070d2b8d&q=mountains"); */
-
 body {
     overflow: hidden;
     padding: 0;
     margin: 0;
+}
+
+.header {
+    width: 95vw;
+    margin: 3vh 3vw;
+    position: absolute;
+    height: auto;
+    border-radius: 8.906px;
+    background: rgba(217, 217, 217, 0.12);
+    box-shadow: -3.943px 3.943px 3.943px 0px rgba(255, 255, 255, 0.43) inset, 3.943px -3.943px 3.943px 0px rgba(182, 182, 182, 0.43) inset;
+    backdrop-filter: blur(25.034873962402344px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Heading {
+    padding: 19vh;
+    position: sticky;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 2vw;
+    color: #FFF;
+    font-style: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.break {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

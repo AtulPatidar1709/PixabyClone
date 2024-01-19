@@ -1,0 +1,50 @@
+
+.header {
+    width: 95vw;
+    margin: 3vh 3vw;
+    position: absolute;
+    height: auto;
+    border-radius: 8.906px;
+    background: rgba(217, 217, 217, 0.12);
+    box-shadow: -3.943px 3.943px 3.943px 0px rgba(255, 255, 255, 0.43) inset, 3.943px -3.943px 3.943px 0px rgba(182, 182, 182, 0.43) inset;
+    backdrop-filter: blur(25.034873962402344px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.HomePage {
+    padding-left: 10px;
+    color: #FFF;
+    font-family: "Euclid Circular B";
+    font-size: 17.813px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19.95px;
+    /* 112% */
+}
+
+.leftdiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 15px;
+}
+
+.Btn1 {
+    margin-right: 5px;
+    color: #FFF;
+    text-decoration: solid;
+}
+
+.Btn2 {
+    background: transparent;
+    color: #FFF;
+    text-decoration: solid;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-color: #FFF;
+    border-radius: 12%;
+    border-width: 2px;
+    padding: 5px;
+}
