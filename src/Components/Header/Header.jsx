@@ -1,4 +1,3 @@
-import React from 'react';
 import "./Header.css";
 
 const Header = () => {
@@ -8,7 +7,7 @@ const Header = () => {
                 <h5>HomePage</h5>
             </div>
             <div className='leftdiv'>
-                <a className='Btn1' href='Header.jsx'>LogIn</a>
+                <a className='Btn1' href='Header.jsx'>Login</a>
                 <button className='Btn2' href="Header.jsx">Create Account</button>
             </div>
         </div>

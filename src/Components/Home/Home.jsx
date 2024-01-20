@@ -46,6 +46,9 @@ const Home = () => {
         <h1>Discover over 2,000,000 <br className='break' /> free Stock Images</h1>
       </div>
       <Search />
+      <div className='trends'>
+        <p className='trending'><strong>Trending : </strong> Technology, Nature.</p>
+      </div>
     </div>
   );
 };

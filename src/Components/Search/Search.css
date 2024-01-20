@@ -1,6 +1,6 @@
 .searchBar {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
 
 }
@@ -8,7 +8,6 @@
 .InputContainer {
     height: 40px;
     display: flex;
-    width: 50vw;
     align-items: center;
     justify-content: center;
     background-color: rgb(255, 255, 255);

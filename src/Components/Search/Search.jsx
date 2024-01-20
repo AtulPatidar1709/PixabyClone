@@ -1,23 +1,111 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import './Search.css';
+
 const Search = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [suggestions, setSuggestions] = useState(new Set());
+    const [categories, setCategories] = useState(new Set());
+
+    const apiKey = '38935622-5004e0429edb1531c070d2b8d';
+
+    const handleSearch = async () => {
+        const searchApiUrl = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(searchTerm)}`;
+        const categoriesApiUrl = `https://pixabay.com/api/?key=${apiKey}&image_type=photo&per_page=3`;
+
+        try {
+            // Fetch search results
+            const searchResponse = await fetch(searchApiUrl);
+            const searchData = await searchResponse.json();
+
+            setSearchResults(searchData.hits);
+
+            // Fetch categories
+            const categoriesResponse = await fetch(categoriesApiUrl);
+            const categoriesData = await categoriesResponse.json();
+
+            if (categoriesData.hits && categoriesData.hits.length > 0) {
+                setCategories(new Set(categoriesData.hits.map(category => category.tags)));
+            } else {
+                console.error('No categories found.');
+            }
+
+            // Update suggestions based on search results
+            setSuggestions(new Set(searchData.hits.map(result => result.tags)));
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const handleChange = (event) => {
+        const value = event.target.value;
+        setSearchTerm(value);
+
+        // Update suggestions based on user input
+        const filteredSuggestions = new Set(
+            searchResults
+                .filter(result => result.tags.toLowerCase().includes(value.toLowerCase()))
+                .map(result => result.tags)
+        );
+
+        setSuggestions(filteredSuggestions);
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
     return (
         <div>
             <div className='searchBar'>
                 <div className="InputContainer">
-                    <input type="text" name="text" className="input" id="input" placeholder="Search" />
+                    <input
+                        type="text"
+                        name="text"
+                        className="input"
+                        id="input"
+                        placeholder="Search"
+                        value={searchTerm}
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}
+                    />
 
                     <label htmlFor="input" className="labelforsearch">
-                        <svg viewBox="0 0 512 512" className="searchIcon"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
+                        <svg viewBox="0 0 512 512" className="searchIcon">
+                            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                        </svg>
                     </label>
                     <div className="border"></div>
-
-                    <button className="micButton"><svg viewBox="0 0 384 512" className="micIcon"><path d="M192 0C139 0 96 43 96 96V256c0 53 43 96 96 96s96-43 96-96V96c0-53-43-96-96-96zM64 216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h72 72c13.3 0 24-10.7 24-24s-10.7-24-24-24H216V430.4c85.8-11.7 152-85.3 152-174.4V216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 70.7-57.3 128-128 128s-128-57.3-128-128V216z"></path></svg>
-                    </button>
                 </div>
             </div>
+
+            <div className="suggestions">
+                <ul>
+                    {[...suggestions].map((suggestion, index) => (
+                        <li key={index}>{suggestion}</li>
+                    ))}
+                </ul>
+            </div>
+
+            <div className="searchResults">
+                {searchResults.map(result => (
+                    <div key={result.id}>
+                        <p alt={result.tags}>{result.tags}</p>
+                    </div>
+                ))}
+            </div>
+
+            <div className="categories">
+                <ul>
+                    {[...categories].map((tags, index) => (
+                        <li key={index}>{tags}</li>
+                    ))}
+                </ul>
+            </div>
         </div>
-    )
-}
+    );
+};
 
 export default Search;

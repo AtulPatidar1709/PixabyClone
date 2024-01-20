@@ -18,13 +18,19 @@ body {
     align-items: center;
 }
 
+h1 {
+    font-size: xxx-large;
+    line-height: 50px;
+}
+
+
 .Heading {
-    padding: 19vh;
-    position: sticky;
+    padding-top: 129px;
+    position: relative;
     justify-content: center;
     align-items: center;
     display: flex;
-    font-size: 2vw;
+    /* font-size: 13vw; */
     color: #FFF;
     font-style: 'Roboto', sans-serif;
     text-align: center;
@@ -34,4 +40,33 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.trends {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trending {
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 10vh;
+    margin: 15px 15vw;
+    font-size: medium;
+    flex-shrink: 0;
+    padding: 0px 5px;
+    border-radius: 8.906px;
+    background: rgba(217, 217, 217, 0.12);
+    box-shadow: -3.943px 3.943px 3.943px 0px rgba(255, 255, 255, 0.43) inset, 3.943px -3.943px 3.943px 0px rgba(182, 182, 182, 0.43) inset;
+    backdrop-filter: blur(25.034873962402344px);
+}
+
+@media screen and (max-width: 505) {
+h1 {
+        font-size: xx-large;
+    }
 }
