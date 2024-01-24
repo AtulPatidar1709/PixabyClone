@@ -8,10 +8,10 @@ const Search = () => {
     const [categories, setCategories] = useState(new Set());
 
     const apiKey = '38935622-5004e0429edb1531c070d2b8d';
+    const categoriesApiUrl = `https://pixabay.com/api/?key=${apiKey}&image_type=photo&per_page=3`;
 
     const handleSearch = async () => {
         const searchApiUrl = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(searchTerm)}`;
-        const categoriesApiUrl = `https://pixabay.com/api/?key=${apiKey}&image_type=photo&per_page=3`;
 
         try {
             // Fetch search results
@@ -32,6 +32,9 @@ const Search = () => {
 
             // Update suggestions based on search results
             setSuggestions(new Set(searchData.hits.map(result => result.tags)));
+
+            // Open search results in a new tab
+            window.open(`https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(searchTerm)}`, '_blank');
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -81,29 +84,13 @@ const Search = () => {
                 </div>
             </div>
 
-            <div className="suggestions">
+            {/* <div className="suggestions">
                 <ul>
                     {[...suggestions].map((suggestion, index) => (
-                        <li key={index}>{suggestion}</li>
+                        <li className='listSuggest' key={index}>{suggestion}</li>
                     ))}
                 </ul>
-            </div>
-
-            <div className="searchResults">
-                {searchResults.map(result => (
-                    <div key={result.id}>
-                        <p alt={result.tags}>{result.tags}</p>
-                    </div>
-                ))}
-            </div>
-
-            <div className="categories">
-                <ul>
-                    {[...categories].map((tags, index) => (
-                        <li key={index}>{tags}</li>
-                    ))}
-                </ul>
-            </div>
+            </div> */}
         </div>
     );
 };
